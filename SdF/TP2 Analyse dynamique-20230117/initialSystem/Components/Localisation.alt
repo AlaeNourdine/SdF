@@ -1,0 +1,25 @@
+/* Basic class for Localisation component */
+class Localisation 
+  FailType gps, vo, gis, si, out (reset = OK);
+  /* Process blocks of the localisation function */
+  InOutComponent LocalizationComputation ;
+
+  /* Need operators */
+  NeedOne2 nONE ;
+  NeedAll3 nALL3 ;
+
+
+  assertion
+	/* Visual data can be provided either by VO or SI */
+	nONE.in1 := vo ;
+	nONE.in2 := si ;
+	/* Localisation process needs visual data and GPS and GIS */
+	nALL3.in1 := gps ;
+	nALL3.in2 := gis ;
+	nALL3.in3 := nONE.out ;
+	LocalizationComputation.in := nALL3.out ;
+	/* Localisation output is provided by the process */
+	out := LocalizationComputation.out ;
+
+end
+

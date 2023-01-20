@@ -1,0 +1,10 @@
+/* Basic class for 2-input selector */ 
+class Selector
+    /* selectI2 is TRUE when need to select input 2 */
+	Boolean selectI2 (reset = false);
+	/* in1 and in2 provide the quality of the two input data */
+	FailType in1, in2, out (reset = OK);
+	assertion
+		/* transmit in2 when selectI2 is TRUE, otherwise transmit in1 */ 
+		out := ...; 
+end
