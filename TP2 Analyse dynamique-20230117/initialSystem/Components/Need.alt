@@ -1,0 +1,44 @@
+/* Basic class for Need At Least One dependencies (2 inputs)*/ 
+class NeedOne2
+	/* "in1" and "in2" are two data needed to provide the "out" data */
+	FailType in1, in2, out (reset = OK);
+	assertion
+	  out := switch {
+				// if at least one data is ok then the output is ok
+				case(in1 == OK or in2 == OK) : OK
+				// otherwise if at least one data is erroneous then the ouput is erroneous
+				case(in1 == ERR or in2 == ERR) : ERR
+				//otherwise the data cannot be properly produced
+				default : LOST
+			};
+end
+
+/* Basic class for Need All dependencies (2 inputs)*/ 
+class NeedAll2
+	/* "in1" and "in2" are two data needed to provide the "out" data */
+	FailType in1, in2, out (reset = OK);
+	assertion
+	  out := switch {
+				// if at least one data is lost then the output is lost
+				case(in1 == LOST or in2 == LOST ) : LOST
+				// otherwise if at least one data is erroneous then the ouput is erroneous
+				case(in1 == ERR or in2 == ERR) : ERR
+				//otherwise the data can be properly produced
+				default : OK
+			}; 
+end
+
+/* Basic class for Need All dependencies (3 inputs)*/ 
+class NeedAll3
+	/* "in1" and "in2" and "in3" are three data needed to provide the "out" data */
+	FailType in1, in2, in3, out (reset = OK);
+	assertion
+	  out := switch {
+				// if at least one data is lost then the output is lost
+				case(in1 == LOST or in2 == LOST or in3 == LOST) : LOST
+				// otherwise if at least one data is erroneous then the ouput is erroneous
+				case(in1 == ERR or in2 == ERR or in3 == ERR) : ERR
+				//otherwise the data can be properly produced
+				default : OK
+			}; 
+end

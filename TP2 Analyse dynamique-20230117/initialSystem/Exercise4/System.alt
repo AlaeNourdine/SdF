@@ -1,0 +1,34 @@
+/*
+* Model of the main avoidance system
+*/
+
+block MainSystemSensorRed
+	/* Quality of the localisation system */
+	FailType out (reset = OK);
+	/* Alert sent to the pilot when the localisation is unavailable */
+	Boolean pilotAlarm (reset = false);
+	/* Elements of the system */
+	RedundantLocalisation Loc;
+	OutComponent IMU1, IMU2, IMU3, GPS1, GPS2, GPS3, RC, LC, GIS;
+	Voter VoterIMU, VoterGPS;
+	InOutComponent VO, SI;
+	NeedAll3 Need;
+	InOutComponent LocAlarm;
+	assertion
+		/* IMU voter needs IMUs data */
+		...
+		/* GPS voter needs GPSs data */
+		...
+		/* VO needs IMU voter, RC and LC */
+		...
+		/* SI needs LC */
+		...
+		/* Localisation needs GPS voter, GIS, VO and SI data */
+		...
+		/* System ouptput is produced by localisation */
+		out := ...;
+		/* the pilot alarm is produced by LocAlarm */
+		pilotAlarm := ...;
+		/* the failure condition is an incorrect localisation without pilot notification */
+		observer Boolean dectectionLoss = ...; 
+end

@@ -1,0 +1,22 @@
+/* Basic class for redundant localisation component */
+class RedundantLocalisation 
+  FailType gps, vo, gis, si, out (reset = OK);
+  /* Process blocks of the localisation function */
+  InOutComponent NominalProcess, BackupProcess;
+  /* Redundancy blocks for the positionning, obstacle referencing and processing */
+  Redundancy PositionRedundancy, ObstacleRedundancy, ProcessRedundancy;
+  /* Need operator */
+  NeedAll2 Need;
+
+  assertion
+	/* Position redundancy is based on gps and vo */
+	...
+	/* Obstacle redundancy is based on gis and si */
+	...
+	/* Localisation needs both position and obstacle referencing */
+	...
+    /* Process redundancy based on the redundant processes */
+	...
+	/* Localisation output is provided by the process redundancy */
+	out := ...;
+end

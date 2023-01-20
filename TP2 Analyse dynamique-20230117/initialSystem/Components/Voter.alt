@@ -1,0 +1,14 @@
+class Voter
+	/* Breakers performing the exclusion of voters */
+    DynamicBreaker Break1, Break2, Break3;
+	/* Input data (in1, in2, in3) from external elements and voter output */
+	FailType in1, in2, in3, out(reset = OK);
+	assertion 
+		// the output of the voter is:
+		// LOST => if no majority can be found among the inputs sinals 
+		//	or if all signals are lost
+		// ERR => if the only remaining signal is erroneous
+		// OK otherwise
+		out := ...;
+		
+end

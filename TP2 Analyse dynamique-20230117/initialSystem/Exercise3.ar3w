@@ -1,0 +1,14 @@
+<!DOCTYPE AltaRicaWizard>
+<project name="Exercise3">
+    <folder name="Components">
+        <file name="BasicComponents.alt" path="Components/BasicComponents.alt"/>
+        <file name="Breaker.alt" path="Components/Breaker.alt"/>
+        <file name="Redundancy.alt" path="Components/Redundancy.alt"/>
+        <file name="Need.alt" path="Components/Need.alt"/>
+        <file name="RedundantLocalisation.alt" path="Components/RedundantLocalisation.alt"/>
+        <file name="Selector.alt" path="Components/Selector.alt"/>
+    </folder>
+    <folder name="Exercise3">
+        <file name="System.alt" path="Exercise3/System.alt"/>
+    </folder>
+</project>
